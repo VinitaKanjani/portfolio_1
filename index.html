@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIX SHOPPING WEBSITE</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <style>
+        body{
+            background: color #f2f2f2;
+            margin: 0;
+            font-family: Arial;
+        }
+        .navbar{
+            position: relative;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:20px 30px;
+            color:rgb(199, 90, 51);
+            margin-bottom:50px;
+        }
+        .navbar .logo{
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateY(-50%);
+            font-size:40px;
+            font-style:oblique;
+            margin-top:50px;
+            margin-left:-75px;
+        }
+        input{
+            color: orange;
+            font-size: 20px;
+        }
+        .header ul a{
+            margin-left:50px;
+            font-size:17px;
+            text-decoration: none;
+            padding:50px;
+            color:rgb(199, 90, 51);
+        }
+        .header ul a:hover{
+            color: rgb(54, 23, 88);
+        }
+        .hero img{
+            max-width:fit-content;
+            background-size:cover;
+        }
+        .hero{    
+            height:80vh;
+            background:url(./IMAGES/new\ website.avif);
+            display: flex;
+            background-size:cover;
+            background-repeat:no-repeat;
+            align-items: center;
+            justify-content:center;
+            position: relative;
+        }
+        .img{
+            position:relative;
+            margin-left:600px;
+        }
+        .hero-content{
+            text-align: center;
+            color: rgb(124, 97, 97);
+            font-size:20px;
+        }
+        .hero h2{
+            font-size:40px;
+            font-weight:bold;
+            letter-spacing: 6px;
+        }
+        .hero button{
+            font-size: 17px;
+            margin-top:20px;
+            padding: 12px 25px;
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+        .hero button:hover{
+            color:rgb(199, 90, 51);
+            background-color: white;
+        }
+
+        
+        /* SELLERS */
+        h3{
+            font-size:23px;
+            font-weight: bold;
+            text-align: center;
+            margin-top:100px;
+        }
+        .carousel{
+            display: flex;
+            align-items:center;
+            position: relative;
+            width:80%;
+            margin: auto;
+        }
+        .container{
+            display:flex;
+            overflow-x:auto;
+            scroll-behavior: smooth;
+            gap:20px;
+        }
+        .container::-webkit-scrollbar{
+            display: none;
+        }
+        .card{
+            margin-top:40px;
+            min-width:210px;
+            min-height:20px;
+            background:#f5f5f5;
+            padding:10px;
+            border-radius:10px;
+        }
+        .card button{
+            padding:5px;
+            font-size:13px;
+            border-radius:20px;
+            background-color:rgb(199, 90, 51);
+            color:white;
+            font-style:italic;
+        }
+        .card img{
+            width:100%;
+            border-radius:10px;
+        }
+        .price{
+            color:rgb(199, 90, 51);
+        }
+        button{             
+            color:rgb(199, 90, 51);
+            padding:14px 40px;
+            font-size: 18px;            
+            border-color:rgb(199, 90, 51);
+        }
+        button:hover{
+            background-color:rgb(199, 90, 51);
+            color:white;
+        }
+      
+        .box{
+            height:100vh;
+            position: relative;
+            background:#f5f5f5;
+        }
+        .product-img{
+            position: absolute;
+            left:10%;
+            top:50%;
+            transform: translateY(-50%);
+            width:300px;
+        }
+        .right-img{
+            position:absolute;
+            right:0;
+            top:0;
+            height:100%;
+            width:50%;
+            object-fit:cover;
+        }
+        .text{
+            margin-left:100px;
+            margin-top:100px;
+            position:absolute;
+            left:10%;
+            top: 50%;
+            transform:translateY(-50%,-50%);
+            width:300px;
+            height:300px;
+        } 
+                .price{
+            color:#e67e22;
+            margin-top:10px;
+            font-style:italic;
+        }
+        .overlay{
+            cursor: pointer;
+            position: absolute;
+            right:9%;
+            top:50%;
+            font-weight:bold;
+            transform:translateY(-50%);
+            color:white;
+            font-size:22px;
+            letter-spacing:3px;
+            border-bottom:2px solid white;
+        }
+        .img-left{
+            width:50%;
+            height:100vh;
+            object-fit: cover;
+            float:left;
+        }
+    
+        .product{
+            width:50%;
+            float:right;
+            text-align: center;
+            padding-top:150px;
+            background:#f5f2ef;
+            height:100vh;
+        }
+        .product-img{
+            width:250px;
+        }
+        .over{
+            cursor: pointer;
+            position: absolute;
+            left:12%;
+            margin-top:40%;
+            font-weight:bold;
+            transform: translateY(-50%);
+            color:white;
+            font-size:22px;
+            letter-spacing:3px;
+            border-bottom:2px solid white;
+        }
+        .cards{
+            display:flex;
+            gap:30px;
+            justify-content:center;
+            padding:50px;
+        }
+        .card{
+            position: relative;
+            width:300px;                     
+            height:400px;
+            overflow:hidden;
+            cursor:pointer;
+        }
+        .card img{
+            width:100%;
+            height:250%;
+            object-fit:cover;
+            transition:0.5s;
+        }
+        .overlay-card{
+            position: absolute;
+            top:0;
+            left:0;
+            height:100%;
+            width:100%;
+            background:rgba(0,0,0,0.3);
+            color:white;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            gap:10px;
+            text-align: center;
+        }
+        .overlay-card p{
+            font-style: italic;
+        }
+        .overlay-card h2{
+            letter-spacing:3px;
+        }
+        .overlay-card a{
+            color:white;
+            text-decoration:underline;
+            font-size:16px;
+        }
+        .card:hover img{
+            transform:scale(1.1);
+        }
+        .card:hover .overlay-card{
+            background:rgba(0,0,0,0.5);
+        }
+        .card span{
+            margin-bottom:60px;
+            font-weight:bold;
+        } 
+
+        /* footer page */
+         .footer .carousel{ 
+            overflow:hidden;
+            display: flex;
+            align-items:center;
+            position:relative;
+            width:100%;
+        }
+        .footer{
+            margin-top:30px;
+        }
+        .footer h2{
+            padding:120px;
+            text-align: center;
+            line-height:1.8;
+            font-weight:bold;
+           background-color:ivory;
+        }
+        .footer p{
+            margin-top:-140px;
+            font-size:25px;
+            font-style: italic;
+            color:#e67e22;
+            text-align:center;
+        }
+        .carousel{
+            overflow:hidden;
+            display: flex;
+            align-items:center;
+            position: relative;
+            width:80%;
+            margin: auto;
+        }
+        .footer-img {
+            height:300px;
+            width:100%;
+            display:flex;
+            transition: 0.5s;
+            overflow-x:auto;
+            gap:10px;
+        }
+        .footer-img img{
+            width:400px;
+            height:250px;
+            object-fit: cover;
+        }
+        .btn{
+            position:relative;
+            top:50%;
+            transform: translateY(-50%);
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            background:white;
+            color:black;
+            border:2px solid #ccc;
+            font-size:20px;
+            cursor: pointer;
+            scroll-behavior: smooth;
+        }
+        .left {
+            left: 15px;
+        }
+        .right {
+            right: 15px;
+        }
+
+          /* hover effect */
+        .btn:hover {
+            background: black;
+            color: white;
+        }
+        .footer-img::-webkit-scrollbar{
+            display: none;
+        }
+      
+         .write{
+            cursor:pointer;
+            justify-content: center;
+            transition:0.3s;
+            opacity: 0;
+            padding:50px;
+            display: flex;
+            background:rgba(0,0,0,0.5);
+            color:white;
+            text-align: center;
+            position: relative;
+            margin-top: -130px;
+            transform: translateY(-50%);
+         }
+        .gallery:hover .write{
+            opacity:1;
+        }
+
+        /* last page footer */
+        .footer-name{
+            background: #f5f5f5;
+            padding: 40px;
+            font-family: Arial;
+        }
+        /* Top 3 text */
+        .top-info{
+            font-size:25px;
+            display: flex;
+            letter-spacing:2px;
+            justify-content: space-around;
+            text-align: center;
+            font-weight:bold;
+            margin-top:-30px;
+            margin-bottom:50px;
+            color: #c75c2c;
+            font-style: italic;
+        }
+
+        .footer-main{
+            margin-top:40px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+        }
+        .logo{
+            margin-left:50px;
+            font-size:35px;
+            color:#c75c2c;
+            font-style: italic;
+        }
+        .links p{
+            font-style: normal;
+            line-height:2;
+            font-size:15px;
+            color:black;
+            margin:8px 0;
+            cursor: pointer;
+        }
+        .join h3{
+            margin-top:-20px;
+            letter-spacing:3px;
+        }
+        .join input[type="email"]{
+            border: none;
+            border-bottom: 2px solid #c75c2c;
+            outline: none;
+            padding:5px;
+            width:100%;
+        }
+        .join button{
+            background:#c75c2c;
+            color:white;
+            border:none;
+            padding:8px 20px;
+            cursor: pointer;
+        }
+        .footer-bottom{
+            text-align: center;
+            margin-top: 40px;
+            padding-top:20px;
+            border-top:1px solid #ccc;
+            font-size: 15px;
+        }
+
+       /* Responsive Design */
+       /* ================= MOBILE ================= */
+    @media (max-width: 600px) {
+
+    /* Navbar */
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .navbar .logo {
+        position: static;
+        transform: none;
+        margin: 10px 0;
+        font-size: 28px;
+    }
+
+    .img {
+        margin-left: 0;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .header ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .header ul a {
+        padding: 10px;
+        margin: 0;
+    }
+
+    /* Hero */
+    .hero {
+        height: 50vh;
+    }
+
+    .hero h2 {
+        font-size: 22px;
+    }
+
+    /* Cards slider */
+    .container {
+        gap: 10px;
+    }
+
+    .card {
+        min-width: 150px;
+    }
+
+    /* Box section */
+    .box {
+        height: auto;
+    }
+
+    .product-img,
+    .right-img,
+    .text {
+        position: static;
+        transform: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .overlay {
+        position: static;
+        text-align: center;
+        color: black;
+        margin: 20px 0;
+    }
+
+    /* Image split section */
+    .img-left,
+    .product {
+        width: 100%;
+        float: none;
+        height: auto;
+    }
+
+    /* Cards section */
+    .cards {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    /* Footer */
+    .top-info {
+        flex-direction: column;
+        gap: 20px;
+        font-size: 18px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+
+/* ================= TABLET ================= */
+@media (max-width: 1024px) {
+
+    .navbar .logo {
+        font-size: 32px;
+    }
+
+    .img {
+        margin-left: 0;
+    }
+
+    .container {
+        gap: 15px;
+    }
+
+    .card {
+        min-width: 180px;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+    }
+
+    .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+        /* Images responsive */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Button center fix */
+        button {
+            display: block;
+            margin: auto;
+        }
+        
+            
+    </style>
+</head> 
+<body>
+      
+<section class="section">
+    <dribble class="navbar">
+       <span onclick="toggleSearch()" style="cursor:pointer; font-size: 30px;"> 
+    <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" width="20"></span>
+       <input type="text" id="searchBox" placeholder="Search..."
+       style="display:none; font-weight: bold; padding:20px;">
+       
+        <!-- center logo -->
+        <div class="logo">adalene.</div>
+
+        <div class="img">
+        <img src="./IMAGES/fac.avif">
+        <img src="./IMAGES/in.avif">
+        <img src="./IMAGES/T.avif">
+        <img src="./IMAGES/P.avif">
+        </div>
+
+        <!-- right-side -->
+         <div>Login | Cart(0)</div>
+    </dribble>
+
+    <div class="header">
+       <ul>
+            <a href="">Shop All</a>
+            <a href="">Our Story</a>
+            <a href="">Our Craft</a>
+            <a href="">Gift Card</a>
+            <a href="">Contact</a>
+       </ul>
+    </div>
+   
+    <div class="hero">
+        <div class="hero-content">
+            <h2>CUE THE COLOR</h2>
+            <button>Shop The Collection</button>
+        </div>
+    </div>
+
+   <h3>BEST SELLERS <br> <span>__</span></h3> 
+   <div class="carousel">
+        <button class="btn" onclick="moveLeft()">❮</button>
+        <div class="container" id="slider">
+            <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P1.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style: italic;">$400.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P2.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style: italic;">$250.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P3.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style: italic;">$300.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P4.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style: italic;">$150.00</p>
+        </div>
+
+         <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P1.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style:italic;">$400.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P2.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style:italic;">$250.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P3.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style:italic;">$300.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P4.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style:italic;">$150.00</p>
+        </div>
+
+         <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P1.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style: italic;">$400.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P2.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style: italic;">$250.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P3.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style:italic;">$300.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P4.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style:italic;">$150.00</p>
+        </div>
+
+        <div class="card">
+            <button>Best Seller</button>
+            <img src="./IMAGES/P2.jpg">
+            <p>i'm Product</p>
+            <p class="price" style="font-style:italic;">$250.00</p>
+        </div>
+    
+        </div>
+        <button class="btn" onclick="moveRight()">❯</button>
+    </div>
+    <button onclick="Bags" style="margin-left:500px;margin-top:50px;">Shop All Bags</button>
+    <br><br>
+
+    <div class="box">
+        <!-- left product -->
+        <img src="./IMAGES/web 2.avif" class="product-img">
+
+        <!-- right image -->
+        <img src="./IMAGES/web 1.avif" class="right-img">
+   
+        <div class="text">
+            <p>I'm product</p>
+            <p class="price">$100,00</p>
+        </div>
+       
+        <!-- overlay text -->
+       <div class="overlay">MINI LEATHER GOODS</div> 
+    </div>
+
+    <img src="./IMAGES/web 3.avif" class="img-left">
+    <div class="over">LEATHER BELTS</div>
+    
+
+    <div class="product">
+        <img src="./IMAGES/web 4.webp">
+        <p>I'm product</p>
+        <p class="price">$50.00</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <img src="./IMAGES/page 5.avif">
+            <div class="overlay-card">
+                <p>Family Owned</p>
+                <h2>BRAND</h2>
+                <span>__</span>
+                <a href="">Read Our Story</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./IMAGES/page 5(2).avif">
+            <div class="overlay-card">
+                <p>Hand Crafted</p>
+                <h2>Products</h2>
+                <span>__</span>
+                <a href="">About Our Leather</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./IMAGES/page 5(3).avif">
+            <div class="overlay-card">
+                <p>Created In The</p>
+                <h2>USA</h2>
+                <span>__</span>
+                <a href="">Learn Our Process</a>
+            </div>
+        </div>
+    </div>
+
+<div class="footer">
+        <h2>FOLLOW <br> ADALENE ON INSTAGRAM</h2>
+        <p>@adaleneshop</p>
+
+    <div class="carousel">
+            <button class="btn" onclick="arrowLeft()">❮</button>
+    
+        <div class="footer-img" id="imgBox">
+            <div class="gallery">
+                <img src="./IMAGES/footer 1.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>
+            </div>
+
+            <div class="gallery">
+                   <img src="./IMAGES/footer 2.jpg">
+                    <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>
+            </div>
+
+            <div class="gallery">
+                <img src="./IMAGES/footer 3.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>   
+            </div>
+
+            <div class="gallery">
+                <img src="./IMAGES/footer 4.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>   
+            </div>
+
+            <div class="gallery">
+                <img src="./IMAGES/footer 5.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>   
+            </div>
+
+            <div class="gallery">
+                <img src="./IMAGES/footer 6.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>   
+            </div>
+         
+            <div class="gallery">
+                <img src="./IMAGES/footer 7.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>   
+            </div>
+    
+            <div class="gallery">
+                <img src="./IMAGES/footer 8.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>   
+            </div>
+        
+            <div class="gallery">
+                <img src="./IMAGES/footer 9.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>
+            </div>
+        
+
+            <div class="gallery">
+                <img src="./IMAGES/footer 10.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>   
+            </div>
+
+            <div class="gallery">
+                <img src="./IMAGES/footer 11.jpg">
+                <div class="write">#wix, #website, #freewebsite, #websitetemplate, #wix.com</div>   
+            </div>
+        </div>
+         <button class="btn" onclick="arrowRight()">❯</button> 
+    </div>
+
+    <footer class="footer-name">
+         <div class="top-info">
+            <div>_ <br>Worldwide shipping</div>
+            <div>_ <br>Easy 30 day returns</div>
+            <div>_ <br>12 month warranty</div>    
+        </div>
+
+    </footer>
+
+     <div class="footer-main">
+            <div class="logo">adalene.</div>
+
+            <div class="links">
+                <p>Shop All</p>
+                <p>Our Story</p>
+                <p>Our Craft</p>
+                <p>Gift Card</p>
+                <p>Contact</p>
+            </div>
+
+            <div class="links">
+                <p>FAQ</p>
+                <p>Shipping & Returns</p>
+                <p>Store Policy</p>
+                <p>Payment Methods</p>
+                <p>Stockists</p>
+            </div>
+
+            <div class="links">
+                <p>Facebook</p>
+                <p>Instagram</p>
+                <p>Twitter</p>
+                <p>Pinterest</p>
+            </div>
+
+            <div class="join">
+                <h3>JOIN US!</h3>
+                <input type="email" placeholder="Email *">
+                <br><br>
+                <label>
+                    <input type="checkbox"> Yes, subscribe me  to your newsletter.*
+                </label>
+                <br><br>
+                <button>Send</button>   
+        </div>
+    </div>
+            <div class="footer-bottom">
+                ©2035 by adalene. Powered and secured by <u style="cursor: pointer;">Wix</u>
+            </div>    
+</section>
+
+    <script>  
+            function arrowLeft(){
+                document.getElementById("imgBox").scrollBy({
+                    left: -220,
+                    behavior: "smooth"
+                });
+            }
+    
+            function arrowRight(){
+                document.getElementById("imgBox").scrollBy({
+                    left: 220,
+                    behavior:"smooth"
+                });
+            }
+            function toggleSearch(){
+                let box = document.getElementById("searchBox");
+                box.style.display = box.style.display === "none" ? "inline-block" : "none";
+            }
+
+            function moveLeft(){
+                document.getElementById("slider").scrollBy({
+                    left: -220,
+                    behavior: "smooth"
+                });
+            }
+
+            function moveRight(){
+                document.getElementById("slider").scrollBy({
+                    left: 220,
+                    behavior: "smooth"
+                });
+            }
+    </script>
+</body>
+</html>
